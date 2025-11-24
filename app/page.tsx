@@ -1,9 +1,11 @@
-import Hero from '@/components/Hero';
+import dynamic from 'next/dynamic';
 import About from '@/components/About';
 import PhotoCards from '@/components/PhotoCards';
 import Contact from '@/components/Contact';
-import GoogleMap from '@/components/GoogleMap';
 import Footer from '@/components/Footer';
+
+const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
+const GoogleMap = dynamic(() => import('@/components/GoogleMap'), { ssr: false });
 
 export default function Home() {
   return (
