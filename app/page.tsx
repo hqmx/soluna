@@ -1,22 +1,18 @@
-'use client';
-
-import dynamic from 'next/dynamic';
 import About from '@/components/About';
 import PhotoCards from '@/components/PhotoCards';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-
-const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
-const GoogleMap = dynamic(() => import('@/components/GoogleMap'), { ssr: false });
+import DynamicHero from '@/components/DynamicHero';
+import DynamicMap from '@/components/DynamicMap';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Hero />
+      <DynamicHero />
       <About />
       <PhotoCards />
       <Contact />
-      <GoogleMap />
+      <DynamicMap />
       <Footer />
     </main>
   );
