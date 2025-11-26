@@ -14,7 +14,7 @@ SOLUNA는 Next.js 기반의 웹 애플리케이션으로, 요가 및 웰니스 �
 - **Maps**: @googlemaps/react-wrapper
 - **Animation**: Framer Motion
 - **Video**: next-video
-- **Deployment**: AWS EC2 (Ubuntu), PM2, Nginx
+- **Deployment**: Cloudflare Pages
 
 ## 2. 프로젝트 구조
 
@@ -62,50 +62,15 @@ npm run start
 npm run lint
 ```
 
-## 4. 배포 정보 (AWS EC2, GitHub)
+## 4. 배포 정보 (Cloudflare Pages, GitHub)
 
-### 서버 접속 정보
-- **IP**: 54.221.145.100
 - **Domain**: https://soluna.hqmx.net
-- **User**: ubuntu
-- **Key**: `hqmx-ec2.pem`
-
 - **Repository**: https://github.com/hqmx/soluna.git
 
 ### 배포 프로세스
+이 프로젝트는 Cloudflare Pages를 통해 자동 배포됩니다. GitHub 저장소의 `main` 브랜치에 코드가 푸시(push)되면, Cloudflare Pages가 이를 감지하여 자동으로 빌드 및 배포를 수행합니다.
 
-#### 자동 배포
-프로젝트 루트에서 다음 스크립트를 실행하면 자동으로 빌드 및 배포가 진행됩니다.
-```bash
-./deploy-to-ec2.sh
-```
-
-#### 수동 배포 절차
-1. **프로젝트 전송**:
-   ```bash
-   scp -i hqmx-ec2.pem -r . ubuntu@54.221.145.100:~/soluna/
-   ```
-2. **서버 접속 및 빌드**:
-   ```bash
-   ssh -i hqmx-ec2.pem ubuntu@54.221.145.100
-   cd ~/soluna
-   npm install
-   npm run build
-   pm2 restart soluna
-   ```
-
-### 서버 구성 요소
-- **PM2**: Node.js 애플리케이션 프로세스 관리
-    - `pm2 list`: 상태 확인
-    - `pm2 logs soluna`: 로그 확인
-    - `pm2 restart soluna`: 재시작
-- **Nginx**: 리버스 프록시 및 SSL 처리
-    - 설정 파일: `/etc/nginx/sites-available/soluna`
-    - `sudo systemctl status nginx`: 상태 확인
-    - `sudo systemctl reload nginx`: 설정 리로드
-- **SSL**: Let's Encrypt (Certbot)
-    - 자동 갱신 설정됨
-    - 인증서 경로: `/etc/letsencrypt/live/soluna.hqmx.net/`
+자세한 빌드 설정 및 로그는 Cloudflare 대시보드에서 확인할 수 있습니다.
 
 ## 5. 주요 수정 가이드
 
@@ -128,12 +93,10 @@ npm run lint
 
 ### 배포 후 변경사항 미반영
 - 브라우저 캐시 삭제 또는 강력 새로고침 (Cmd+Shift+R)
-- EC2 서버에서 `pm2 restart soluna` 실행 확인
-
-### 서버 접속 불가
-- EC2 인스턴스 상태 확인 (AWS Console)
-- 보안 그룹(Security Group) 포트 확인 (80, 443, 3000, 22)
+- Cloudflare 대시보드에서 최신 배포가 성공했는지 확인
 
 ### 빌드 에러
 - 로컬에서 `npm run build`로 미리 확인
-- Node.js 버전 확인 (v20.x 권장)
+- Cloudflare Pages 빌드 로그에서 에러 원인 확인
+- Node.js 버전 확인 (Cloudflare Pages 설정과 일치하는지 확인)
+\n<!-- Triggering new deployment -->
