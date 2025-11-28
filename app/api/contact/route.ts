@@ -1,7 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge';
-
 export async function POST(req: NextRequest) {
   // Nodemailer is a Node.js module and is not compatible with the Edge Runtime.
   // To send emails from Cloudflare Pages, you should use an email provider
