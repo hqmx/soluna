@@ -2,17 +2,17 @@ import About from '@/components/About';
 import PhotoCards from '@/components/PhotoCards';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import DynamicHero from '@/components/DynamicHero';
-import DynamicMap from '@/components/DynamicMap';
+import Hero from '@/components/Hero';
+import GoogleMap from '@/components/GoogleMap';
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <DynamicHero />
+      <Hero />
       <About />
       <PhotoCards />
       <Contact />
-      <DynamicMap />
+      <GoogleMap />
       <Footer />
     </main>
   );
