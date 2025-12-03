@@ -13,9 +13,9 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # 설정
-EC2_IP="54.221.145.100"
+EC2_IP="23.21.183.81"
 EC2_USER="ubuntu"
-PEM_KEY="./hqmx-ec2.pem"
+PEM_KEY="../hqmx-ec2.pem"
 REMOTE_DIR="~/soluna"
 LOCAL_DIR="."
 
